@@ -6,20 +6,36 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "serve": "yarn serve out"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/server": "^11.11.0",
+    "@nextui-org/react": "^1.0.0-beta.13",
+    "@tabler/icons-react": "^2.23.0",
+    "@types/marked": "^5.0.0",
     "@types/node": "20.3.2",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
+    "gray-matter": "^4.0.3",
+    "highlightjs": "^9.16.2",
+    "import": "^0.0.6",
+    "marked": "^5.1.1",
+    "marked-highlight": "^2.0.1",
     "next": "13.4.7",
+    "next-themes": "^0.2.1",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "serve": "^14.2.0",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.3"
+  },
+  "devDependencies": {
+    "@types/highlightjs": "^9.12.2"
   }
 }
