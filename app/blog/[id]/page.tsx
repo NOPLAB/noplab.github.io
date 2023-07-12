@@ -1,16 +1,16 @@
-import { getAllPosts, getPostById } from "./post";
+import { getAllBlogs, getBlogById } from "../../../features/blog";
 
 export default async function Post({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const { html, title } = await getPostById(id);
+  const { html, title } = await getBlogById(id);
   return html;
 }
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
+  const posts = await getAllBlogs();
 
   return posts.map((post) => ({
     id: post.id,
@@ -22,7 +22,7 @@ export async function generateMetadata({
 }: {
   params: { id: string };
 }) {
-  const { title } = await getPostById(id);
+  const { title } = await getBlogById(id);
   return {
     title,
   };

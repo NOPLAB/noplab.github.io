@@ -14,7 +14,7 @@ export class Post {
   ) {}
 }
 
-export async function getPostById(id: string): Promise<Post> {
+export async function getBlogById(id: string): Promise<Post> {
   const realId = id.replace(/\.md$/, "");
   const fullPath = join("blog", `${realId}.md`);
 
@@ -52,9 +52,19 @@ export async function getPostById(id: string): Promise<Post> {
   return post;
 }
 
-export async function getAllPosts() {
+export async function getAllBlogs() {
   const posts = await Promise.all(
-    fs.readdirSync("blog").map((id) => getPostById(id))
+    fs.readdirSync("blog").map((id) => getBlogById(id))
   );
+  return posts;
+}
+
+export async function getAllBlogsTitles() {
+  const posts = await Promise.all(
+    fs
+      .readdirSync("blog")
+      .map((id) => getBlogById(id).then((post) => post.title))
+  );
+
   return posts;
 }
