@@ -5,7 +5,7 @@ export default async function Post({
 }: {
   params: { id: string };
 }) {
-  const { html, title } = await getBlogById(id);
+  const { html } = await getBlogById(id);
   return html;
 }
 

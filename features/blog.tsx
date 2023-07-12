@@ -6,15 +6,7 @@ import "highlightjs/styles/tomorrow-night-eighties.css";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlightjs";
 
-export class Post {
-  constructor(
-    public id: string,
-    public title: string,
-    public html: JSX.Element
-  ) {}
-}
-
-export async function getBlogById(id: string): Promise<Post> {
+export async function getBlogById(id: string) {
   const realId = id.replace(/\.md$/, "");
   const fullPath = join("blog", `${realId}.md`);
 
@@ -38,18 +30,17 @@ export async function getBlogById(id: string): Promise<Post> {
 
   const html = marked(content);
 
-  const post = new Post(
-    realId,
-    data.title,
-    (
-      <article className="min-h-screen px-20">
+  return {
+    id: realId,
+    title: data.title,
+    date: data.date,
+    html: (
+      <main className="min-h-screen w-screen flex flex-col space-y-4 px-12 pt-10">
         <h1>{data.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: marked(content) }} />
-      </article>
-    )
-  );
-
-  return post;
+        <div className="pt-10" dangerouslySetInnerHTML={{ __html: html }}></div>
+      </main>
+    ),
+  };
 }
 
 export async function getAllBlogs() {
@@ -65,6 +56,5 @@ export async function getAllBlogsTitles() {
       .readdirSync("blog")
       .map((id) => getBlogById(id).then((post) => post.title))
   );
-
   return posts;
 }
