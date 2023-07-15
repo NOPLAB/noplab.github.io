@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* .dark-theme {
+    --nextui-colors-codeLight: none !important;
+    --nextui-colors-code: none !important;
+} */

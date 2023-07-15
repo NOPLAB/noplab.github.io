@@ -12,10 +12,6 @@ import { useEffect, useState } from "react";
 
 export default function Page() {
   const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  // next-themesとNextjs 13を組み合わせると起こるバグ対策 2023.07.09
-  useEffect(() => setMounted(true), []);
 
   return (
     <main className="flex flex-col pt-10 items-center">
@@ -54,7 +50,7 @@ export default function Page() {
                 <Link href="https://twitter.com/NOP_LAB">
                   <IconBrandTwitter
                     size={80}
-                    color={mounted && theme === "dark" ? "white" : "black"}
+                    color={theme === "dark" ? "white" : "black"}
                   />
                 </Link>
               </Grid>
@@ -62,7 +58,7 @@ export default function Page() {
                 <Link href="https://github.com/NOPLAB">
                   <IconBrandGithub
                     size={80}
-                    color={mounted && theme === "dark" ? "white" : "black"}
+                    color={theme === "dark" ? "white" : "black"}
                   />
                 </Link>
               </Grid>
@@ -81,13 +77,13 @@ export default function Page() {
               <Grid xs={5} justify="center">
                 <IconBrandCSharp
                   size={80}
-                  color={mounted && theme === "dark" ? "white" : "black"}
+                  color={theme === "dark" ? "white" : "black"}
                 />
               </Grid>
               <Grid xs={5} justify="center">
                 <IconBrandRust
                   size={80}
-                  color={mounted && theme === "dark" ? "white" : "black"}
+                  color={theme === "dark" ? "white" : "black"}
                 />
               </Grid>
             </Grid.Container>

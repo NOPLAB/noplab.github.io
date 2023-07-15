@@ -1,5 +1,5 @@
-import { getAllBlogs, getAllBlogsTitles } from "@/features/blog";
-import BlogTitle from "./blogTitle";
+import { getAllBlogs } from "@/features/Blog";
+import BlogTitle from "./BlockTitle";
 import { join } from "path";
 
 export default async function Blog() {
@@ -14,7 +14,8 @@ export default async function Blog() {
           for (let blog of blogs) {
             htmlTitles.push(
               <BlogTitle
-                str={blog.title}
+                title={blog.title}
+                date={blog.date}
                 link={join("blog", blog.id)}
               ></BlogTitle>
             );

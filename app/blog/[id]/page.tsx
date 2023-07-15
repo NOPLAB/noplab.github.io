@@ -1,18 +1,20 @@
-import { getAllBlogs, getBlogById } from "../../../features/blog";
+import { getAllBlogs, getBlogById } from "@/features/Blog";
+import BlogMarkdown from "./BlogMarkdown";
 
-export default async function Post({
+export default async function Page({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const { html } = await getBlogById(id);
-  return html;
+  const { markdown, title, date } = await getBlogById(id);
+
+  return <BlogMarkdown title={title} date={date} markdown={markdown} />;
 }
 
 export async function generateStaticParams() {
-  const posts = await getAllBlogs();
+  const blogs = await getAllBlogs();
 
-  return posts.map((post) => ({
+  return blogs.map((post) => ({
     id: post.id,
   }));
 }

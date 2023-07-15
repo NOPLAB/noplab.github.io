@@ -6,10 +6,23 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 export function Providers({ children }: { children: React.ReactNode }) {
   const lightTheme = createTheme({
     type: "light",
+    theme: {
+      colors: {
+        code: "none",
+        codeLight: "none",
+      },
+    },
   });
 
   const darkTheme = createTheme({
     type: "dark",
+    theme: {
+      colors: {
+        background: "#1d1d1d",
+        code: "none",
+        codeLight: "none",
+      },
+    },
   });
 
   return (

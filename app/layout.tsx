@@ -2,8 +2,8 @@
 
 import "./globals.css";
 import { Noto_Sans_JP } from "next/font/google";
-import { Providers } from "./providers";
-import ThemeSwitch from "./themeswitch";
+import { Providers } from "./Provider";
+import ThemeSwitch from "./ThemeSwitch";
 import { Navbar, Text } from "@nextui-org/react";
 import Link from "next/link";
 
