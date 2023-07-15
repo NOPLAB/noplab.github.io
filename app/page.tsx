@@ -18,6 +18,7 @@ export default function Page() {
       <div className="flex min-h-screen flex-col space-y-20 items-center">
         <Avatar
           src="nop_400x400.jpg"
+          alt="nop"
           color="gradient"
           bordered
           css={{ size: "$80" }}
@@ -47,14 +48,14 @@ export default function Page() {
           <Card.Body>
             <Grid.Container justify="center">
               <Grid xs={5} justify="center">
-                <Link href="https://twitter.com/NOP_LAB">
+                <Link href="https://twitter.com/NOP_LAB" title="Twitter">
                   <IconBrandTwitter
                     size={80}
                     color={theme === "dark" ? "white" : "black"}
                   />
                 </Link>
               </Grid>
-              <Grid xs={5} justify="center">
+              <Grid xs={5} justify="center" title="GitHub">
                 <Link href="https://github.com/NOPLAB">
                   <IconBrandGithub
                     size={80}

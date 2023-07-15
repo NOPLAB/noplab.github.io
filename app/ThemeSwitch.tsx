@@ -19,7 +19,7 @@ export default function ThemeSwitch() {
   }
 
   return (
-    <div className="flex flex-row space-x-2 items-center">
+    <label className="flex flex-row space-x-2 items-center">
       {theme === "dark" ? (
         <IconMoon color="white" />
       ) : (
@@ -30,6 +30,6 @@ export default function ThemeSwitch() {
         checked={theme === "dark" ? true : false}
         onChange={(e) => setTheme(e.target.checked ? "dark" : "light")}
       />
-    </div>
+    </label>
   );
 }
