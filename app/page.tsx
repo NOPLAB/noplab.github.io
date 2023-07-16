@@ -15,7 +15,7 @@ export default function Page() {
 
   return (
     <main className="flex flex-col pt-10 items-center">
-      <div className="flex min-h-screen flex-col space-y-20 items-center">
+      <div className="flex flex-col min-h-screen w-full space-y-20 items-center">
         <Avatar
           src="nop_400x400.jpg"
           alt="nop"
@@ -25,6 +25,7 @@ export default function Page() {
         />
         <Text
           h1
+          size={65}
           css={{
             textGradient: "45deg, $pink600 0%, $red600 100%",
           }}
@@ -39,7 +40,7 @@ export default function Page() {
       </div>
 
       <div className="flex min-h-screen w-full flex-col space-y-20 items-center">
-        <Card variant="bordered" borderWeight="black" css={{ mw: "30rem" }}>
+        <Card variant="bordered" borderWeight="black" css={{ mw: "35rem" }}>
           <Card.Header>
             <Text color="#74a4dd" h2>
               Links
@@ -67,7 +68,7 @@ export default function Page() {
           </Card.Body>
         </Card>
 
-        <Card variant="bordered" borderWeight="black" css={{ mw: "30rem" }}>
+        <Card variant="bordered" borderWeight="black" css={{ mw: "35rem" }}>
           <Card.Header>
             <Text color="#74a4dd" h2>
               Language

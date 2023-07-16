@@ -6,6 +6,7 @@ import { Providers } from "./Provider";
 import ThemeSwitch from "./ThemeSwitch";
 import { Navbar, Text } from "@nextui-org/react";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Noto_Sans_JP({ subsets: ["latin"], weight: "300" });
 
@@ -35,6 +36,7 @@ export default function RootLayout({
             </Navbar>
           </header>
           {children}
+          <Analytics />
           <footer className="flex flex-row justify-end items-center">
             <Text size={"$md"} className="p-6">
               Created by <Link href={"https://twitter.com/NOP_LAB"}>nop</Link>
