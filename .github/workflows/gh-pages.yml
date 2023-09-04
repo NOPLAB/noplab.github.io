@@ -1,0 +1,51 @@
+name: Deploy
+
+# mainブランチにプッシュしたときに操作を行う
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Node.js環境のセットアップを行う
+      - name: Set Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      # しかしGitHub Pagesの仕様として_から始まるディレクトリが見えず404となる
+      # つまりHTMLからJSを読み込めない
+      # これを回避するために.nojekyllファイルをoutディレクトリに作る
+      - name: Add nojekyll
+        run: touch ./out/.nojekyll
+
+      # gh-pagesブランチにoutディレクトリの中身をプッシュする
+      # gh-pagesブランチは自動的に作成される
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
