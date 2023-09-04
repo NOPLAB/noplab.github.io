@@ -1,4 +1,4 @@
-name: Deploy
+name: github.io Deploy
 
 # mainブランチにプッシュしたときに操作を行う
 on:
@@ -44,7 +44,7 @@ jobs:
 
       # gh-pagesブランチにoutディレクトリの中身をプッシュする
       # gh-pagesブランチは自動的に作成される
-      - name: deploy
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
