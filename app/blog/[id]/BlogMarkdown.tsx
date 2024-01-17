@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import ReactMarkdown from "react-markdown";
-import rehypeSlug from "rehype-slug";
-import rehypeToc from "rehype-toc";
-import CodeBlock from "./CodeBlock";
-import { useTheme, Text } from "@nextui-org/react";
+import ReactMarkdown from 'react-markdown';
+import rehypeSlug from 'rehype-slug';
+import rehypeToc from 'rehype-toc';
+import CodeBlock from './CodeBlock';
+import { useTheme } from 'next-themes';
 
 const tocOptions = {
-  headings: ["h1", "h2"],
+  headings: ['h1', 'h2'],
   cssClasses: {
-    toc: "",
-    list: "",
-    listItem: "",
-    link: "",
+    toc: '',
+    list: '',
+    listItem: '',
+    link: '',
   },
 };
 
@@ -25,24 +25,24 @@ export default function BlogMarkdown({
   date: Date;
   markdown: string;
 }) {
-  const { isDark } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <div className="flex flex-col items-center">
       <article
         className={
-          "w-full pt-10 px-2 prose lg:prose-2xl" +
-          (isDark ? " prose-invert" : "")
+          'w-full pt-10 px-2 prose lg:prose-2xl' +
+          (theme === 'dark' ? ' prose-invert' : '')
         }
       >
-        <Text h1>{title}</Text>
-        <Text size={"$md"} className="pb-12">
-          {date.toLocaleDateString("en-us", {
-            year: "numeric",
-            month: "numeric",
-            day: "numeric",
+        <h1>{title}</h1>
+        <p className="pb-12">
+          {date.toLocaleDateString('en-us', {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
           })}
-        </Text>
+        </p>
         <h2>目次</h2>
         <ReactMarkdown
           rehypePlugins={[rehypeSlug, [rehypeToc, tocOptions]]}

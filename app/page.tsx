@@ -1,14 +1,7 @@
-"use client";
+'use client';
 
-import { useTheme } from "next-themes";
-import { Avatar, Card, Grid, Link, Spacer, Text } from "@nextui-org/react";
-import {
-  IconBrandCSharp,
-  IconBrandGithub,
-  IconBrandRust,
-  IconBrandTwitter,
-} from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+// import { Avatar } from '@nextui-org/avatar';
+import { useTheme } from 'next-themes';
 
 export default function Page() {
   const { theme } = useTheme();
@@ -16,38 +9,31 @@ export default function Page() {
   return (
     <main className="flex flex-col pt-10 items-center">
       <div className="flex flex-col min-h-screen w-full space-y-20 items-center">
-        <Avatar
-          src="nop_400x400.jpg"
-          alt="nop"
-          color="gradient"
-          bordered
-          css={{ size: "$80" }}
-        />
-        <Text
-          h1
-          size={65}
-          css={{
-            textGradient: "45deg, $pink600 0%, $red600 100%",
-          }}
-          className="animate-text-focus-in"
-        >
-          Hi! Do you like KANI🦀?
-        </Text>
+        {/* <Avatar src="nop_400x400.jpg" alt="nop" size="lg" isBordered /> */}
+        <picture>
+          <img
+            src="nop_400x400.jpg"
+            alt="nop image"
+            className="rounded-full border-4 border-green-300"
+          ></img>
+        </picture>
 
-        <Text size="$lg">
-          このサイトはNextJSとNextUIを使用して制作されています。
-        </Text>
+        <h1 className="animate-text-focus-in text-6xl font-bold gradient bg-gradient-to-r from-pink-500 to-fuchsia-500 bg-clip-text text-transparent">
+          Hi! Do u like KANI🦀?
+        </h1>
+
+        <h2 className="animate-text-focus-in">
+          このサイトはNext.jsとNextUIを使用しています。
+        </h2>
       </div>
 
       <div className="flex min-h-screen w-full flex-col space-y-20 items-center">
-        <Card variant="bordered" borderWeight="black" css={{ mw: "35rem" }}>
-          <Card.Header>
-            <Text color="#74a4dd" h2>
-              Links
-            </Text>
-          </Card.Header>
-          <Card.Body>
-            <Grid.Container justify="center">
+        {/* <Card variant="bordered" borderWeight="black" css={{ mw: "35rem" }}>
+          <CardHeader>
+            <h2>Links</h2>
+          </CardHeader>
+          <CardBody>
+            <GridContainer justify="center">
               <Grid xs={5} justify="center">
                 <Link href="https://twitter.com/NOP_LAB" title="Twitter">
                   <IconBrandTwitter
@@ -64,8 +50,8 @@ export default function Page() {
                   />
                 </Link>
               </Grid>
-            </Grid.Container>
-          </Card.Body>
+            </GridContainer>
+          </CardBody>
         </Card>
 
         <Card variant="bordered" borderWeight="black" css={{ mw: "35rem" }}>
@@ -90,7 +76,7 @@ export default function Page() {
               </Grid>
             </Grid.Container>
           </Card.Body>
-        </Card>
+        </Card> */}
       </div>
     </main>
   );
