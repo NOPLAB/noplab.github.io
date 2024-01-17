@@ -11,7 +11,7 @@ export default function TopNavbar() {
   return (
     <Navbar position="static" isBordered>
       <NavbarBrand>{/* TODO */}</NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-14" justify="center">
+      <NavbarContent className="flex gap-14" justify="center">
         <NavbarItem>
           <Link href={'/'}>Home</Link>
         </NavbarItem>

@@ -5,6 +5,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypeToc from 'rehype-toc';
 import CodeBlock from './CodeBlock';
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 const tocOptions = {
   headings: ['h1', 'h2'],
@@ -27,12 +28,18 @@ export default function BlogMarkdown({
 }) {
   const { theme } = useTheme();
 
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    setIsDark(theme === 'dark');
+  }, [theme]);
+
   return (
     <div className="flex flex-col items-center">
       <article
         className={
           'w-full pt-10 px-2 prose lg:prose-2xl' +
-          (theme === 'dark' ? ' prose-invert' : '')
+          (isDark ? ' prose-invert' : '')
         }
       >
         <h1>{title}</h1>

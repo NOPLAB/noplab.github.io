@@ -1,25 +1,39 @@
 'use client';
 
-// import { Avatar } from '@nextui-org/avatar';
+import { Card, CardBody, CardHeader } from '@nextui-org/card';
+import {
+  IconBrandCSharp,
+  IconBrandGithub,
+  IconBrandRust,
+  IconBrandTwitter,
+} from '@tabler/icons-react';
 import { useTheme } from 'next-themes';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function Page() {
   const { theme } = useTheme();
 
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    setIsDark(theme === 'dark');
+  }, [theme]);
+
   return (
-    <main className="flex flex-col pt-10 items-center">
-      <div className="flex flex-col min-h-screen w-full space-y-20 items-center">
-        {/* <Avatar src="nop_400x400.jpg" alt="nop" size="lg" isBordered /> */}
+    <main className="flex flex-col items-center">
+      <div className="flex flex-col items-center min-h-screen w-full gap-y-20 pt-20">
         <picture>
           <img
             src="nop_400x400.jpg"
             alt="nop image"
-            className="rounded-full border-4 border-green-300"
+            className="rounded-full border-4 border-pink-400 size-80"
           ></img>
         </picture>
 
         <h1 className="animate-text-focus-in text-6xl font-bold gradient bg-gradient-to-r from-pink-500 to-fuchsia-500 bg-clip-text text-transparent">
-          Hi! Do u like KANI🦀?
+          Hi! Do u like
+          <br className="block mg:hidden" /> KANI🦀?
         </h1>
 
         <h2 className="animate-text-focus-in">
@@ -27,56 +41,30 @@ export default function Page() {
         </h2>
       </div>
 
-      <div className="flex min-h-screen w-full flex-col space-y-20 items-center">
-        {/* <Card variant="bordered" borderWeight="black" css={{ mw: "35rem" }}>
+      <div className="flex min-h-screen w-full flex-col gap-y-20 items-center pt-20 mg:pt-0">
+        <Card>
           <CardHeader>
-            <h2>Links</h2>
+            <h1 className="font-bold text-lg">Links</h1>
           </CardHeader>
-          <CardBody>
-            <GridContainer justify="center">
-              <Grid xs={5} justify="center">
-                <Link href="https://twitter.com/NOP_LAB" title="Twitter">
-                  <IconBrandTwitter
-                    size={80}
-                    color={theme === "dark" ? "white" : "black"}
-                  />
-                </Link>
-              </Grid>
-              <Grid xs={5} justify="center" title="GitHub">
-                <Link href="https://github.com/NOPLAB">
-                  <IconBrandGithub
-                    size={80}
-                    color={theme === "dark" ? "white" : "black"}
-                  />
-                </Link>
-              </Grid>
-            </GridContainer>
+          <CardBody className="flex flex-row gap-x-10 px-20">
+            <Link href="https://twitter.com/NOP_LAB" title="Twitter">
+              <IconBrandTwitter size={80} color={isDark ? 'white' : 'black'} />
+            </Link>
+            <Link href="https://github.com/NOPLAB">
+              <IconBrandGithub size={80} color={isDark ? 'white' : 'black'} />
+            </Link>
           </CardBody>
         </Card>
 
-        <Card variant="bordered" borderWeight="black" css={{ mw: "35rem" }}>
-          <Card.Header>
-            <Text color="#74a4dd" h2>
-              Language
-            </Text>
-          </Card.Header>
-          <Card.Body>
-            <Grid.Container justify="center">
-              <Grid xs={5} justify="center">
-                <IconBrandCSharp
-                  size={80}
-                  color={theme === "dark" ? "white" : "black"}
-                />
-              </Grid>
-              <Grid xs={5} justify="center">
-                <IconBrandRust
-                  size={80}
-                  color={theme === "dark" ? "white" : "black"}
-                />
-              </Grid>
-            </Grid.Container>
-          </Card.Body>
-        </Card> */}
+        <Card>
+          <CardHeader>
+            <h1 className="font-bold text-lg">Language</h1>
+          </CardHeader>
+          <CardBody className="flex flex-row gap-x-10 px-20">
+            <IconBrandCSharp size={80} color={isDark ? 'white' : 'black'} />
+            <IconBrandRust size={80} color={isDark ? 'white' : 'black'} />
+          </CardBody>
+        </Card>
       </div>
     </main>
   );

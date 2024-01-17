@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Card, CardBody, CardFooter } from "@nextui-org/card";
-import Link from "next/link";
+import { Card, CardBody, CardFooter } from '@nextui-org/card';
+import Link from 'next/link';
 
 export default function BlogTitle({
   title,
@@ -21,10 +21,10 @@ export default function BlogTitle({
           </CardBody>
           <CardFooter>
             <p>
-              {date.toLocaleDateString("en-us", {
-                year: "numeric",
-                month: "numeric",
-                day: "numeric",
+              {date.toLocaleDateString('en-us', {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
               })}
             </p>
           </CardFooter>

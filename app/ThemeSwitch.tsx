@@ -21,7 +21,7 @@ export default function ThemeSwitch() {
   }
 
   return (
-    <div className="flex flex-row space-x-2 items-center">
+    <div className="flex flex-row gap-x-2 items-center">
       <Switch
         color="warning"
         isSelected={isSelected}
