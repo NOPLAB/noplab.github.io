@@ -3,9 +3,12 @@
 import { Card, CardBody, CardHeader } from '@nextui-org/card';
 import {
   IconBrandCSharp,
+  IconBrandCpp,
   IconBrandGithub,
+  IconBrandNextjs,
   IconBrandRust,
   IconBrandTwitter,
+  IconBrandTypescript,
 } from '@tabler/icons-react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
@@ -33,7 +36,7 @@ export default function Page() {
 
         <h1 className="animate-text-focus-in text-6xl font-bold gradient bg-gradient-to-r from-pink-500 to-fuchsia-500 bg-clip-text text-transparent">
           Hi! Do u like
-          <br className="block mg:hidden" /> KANI🦀?
+          <br className="block md:hidden" /> KANI🦀?
         </h1>
 
         <h2 className="animate-text-focus-in">
@@ -46,7 +49,7 @@ export default function Page() {
           <CardHeader>
             <h1 className="font-bold text-lg">Links</h1>
           </CardHeader>
-          <CardBody className="flex flex-row gap-x-10 px-20">
+          <CardBody className="flex flex-row gap-x-20 px-20">
             <Link href="https://twitter.com/NOP_LAB" title="Twitter">
               <IconBrandTwitter size={80} color={isDark ? 'white' : 'black'} />
             </Link>
@@ -63,6 +66,17 @@ export default function Page() {
           <CardBody className="flex flex-row gap-x-10 px-20">
             <IconBrandCSharp size={80} color={isDark ? 'white' : 'black'} />
             <IconBrandRust size={80} color={isDark ? 'white' : 'black'} />
+            <IconBrandCpp size={80} color={isDark ? 'white' : 'black'} />
+            <IconBrandTypescript
+              size={80}
+              color={isDark ? 'white' : 'black'}
+              opacity={0.6}
+            />
+            <IconBrandNextjs
+              size={80}
+              color={isDark ? 'white' : 'black'}
+              opacity={0.6}
+            />
           </CardBody>
         </Card>
       </div>
