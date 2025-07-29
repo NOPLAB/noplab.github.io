@@ -1,15 +1,24 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import * as contentful from 'contentful';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const client = contentful.createClient({
+space: import.meta.env.CONTENTFUL_SPACE,
+accessToken: import.meta.env.CONTENTFUL_ACCESSTOKEN,
+enviroment: import.meta.env.CONTENTFUL_ENVIROMENT
+});
+
+const entries = await client.getEntries();
+const items = entries.items;
+
+const posts = items.sort(
+	(a, b) => b.updatedAt.valueOf() - a.updatedAt.valueOf(),
+	);
 ---
 
 <!doctype html>
@@ -94,13 +103,13 @@ const posts = (await getCollection('blog')).sort(
 					{
 						posts.map((post) => (
 							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+								<a href={`/blog/${post.sys.id}/`}>
+									{post.fields.heroImage.fields.file.url && (
+										<Image width={720} height={360} src={post.fields.heroImage.fields.file.url} alt="" />
 									)}
-									<h4 class="title">{post.data.title}</h4>
+									<h4 class="title">{post.fields.title}</h4>
 									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
+										<FormattedDate date={post.updatedAt} />
 									</p>
 								</a>
 							</li>
