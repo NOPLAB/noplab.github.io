@@ -45,6 +45,7 @@ body {
 main {
 	width: auto;
 	margin: auto;
+	padding-top: 2rem;
 }
 h1,
 h2,
@@ -145,7 +146,7 @@ hr {
 		font-size: 18px;
 	}
 	main {
-		padding: 1em;
+		padding: 1.5rem 1em 1em;
 	}
 }
 

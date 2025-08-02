@@ -1,5 +1,4 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 import * as contentful from 'contentful';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
@@ -8,7 +7,7 @@ export async function getStaticPaths() {
     const client = contentful.createClient({
 	space: import.meta.env.CONTENTFUL_SPACE,
 	accessToken: import.meta.env.CONTENTFUL_ACCESSTOKEN,
-	enviroment: import.meta.env.CONTENTFUL_ENVIROMENT
+	environment: import.meta.env.CONTENTFUL_ENVIROMENT
     });
 
     const entries = await client.getEntries();
@@ -22,10 +21,10 @@ export async function getStaticPaths() {
 
 const post = Astro.props;
 console.log(post.fields.content);
-const contentHtml = documentToHtmlString(post.fields.content);
+const contentHtml = documentToHtmlString(post.fields.content as any);
 ---
 
-<BlogPost {...post.data}>
+<BlogPost title={post.fields.title as string} description={(post.fields.description as string) || ''} pubDate={new Date(post.sys.createdAt)} updatedDate={new Date(post.sys.updatedAt)} heroImage={(post.fields.heroImage as any)?.fields?.file?.url}>
     <div set:html={contentHtml}></div>
 </BlogPost>
 

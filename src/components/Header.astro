@@ -4,7 +4,9 @@ import HeaderLink from './HeaderLink.astro';
 
 <header>
     <nav>
-		<div />
+		<div class="logo">
+			<a href="/" class="logo-link">nop</a>
+		</div>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
@@ -50,6 +52,37 @@ import HeaderLink from './HeaderLink.astro';
 		align-items: center;
 		justify-content: space-between;
 	}
+	
+	.logo {
+		flex: 1;
+	}
+	
+	.logo-link {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: var(--text);
+		text-decoration: none;
+		padding: 1em 0.5em;
+		border-bottom: 4px solid transparent;
+		transition: all 0.3s ease;
+	}
+	
+	.logo-link:hover {
+		color: var(--accent);
+		border-bottom-color: var(--accent);
+	}
+	
+	.internal-links {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		gap: 0.5rem;
+	}
+	
+	.social-links {
+		flex: 1;
+		justify-content: flex-end;
+	}
 	nav a {
 		padding: 1em 0.5em;
 		color: var(--sub-text);
@@ -67,6 +100,19 @@ import HeaderLink from './HeaderLink.astro';
 	@media (max-width: 720px) {
 		.social-links {
 			display: none;
+		}
+		
+		.logo-link {
+			font-size: 1.2rem;
+			padding: 1em 0.2em;
+		}
+		
+		.internal-links {
+			gap: 0.2rem;
+		}
+		
+		nav a {
+			padding: 1em 0.3em;
 		}
 	}
 </style>
