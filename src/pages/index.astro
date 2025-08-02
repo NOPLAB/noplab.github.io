@@ -3,6 +3,54 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+import { Image } from 'astro:assets';
+import nopImage from '../assets/nop.png';
+
+const projects = [
+	{
+		name: "simple-risc-v",
+		description: "Rustで書かれたシンプルなRISC-Vエミュレータ",
+		language: "Rust",
+		stars: 2,
+		url: "https://github.com/NOPLAB/simple-risc-v"
+	},
+	{
+		name: "rust-othello",
+		description: "Rustで作られたオセロゲーム",
+		language: "Rust",
+		stars: 2,
+		url: "https://github.com/NOPLAB/rust-othello"
+	},
+	{
+		name: "raytracing",
+		description: "Rustで実装したレイトレーシングエンジン",
+		language: "Rust",
+		stars: 1,
+		url: "https://github.com/NOPLAB/raytracing"
+	},
+	{
+		name: "sikios",
+		description: "Rustを使ったOS開発プロジェクト",
+		language: "Rust",
+		stars: 1,
+		url: "https://github.com/NOPLAB/sikios"
+	},
+	{
+		name: "M5StackInvertedPendulumV2.2",
+		description: "M5Stackを使った倒立振子制御システム",
+		language: "C++",
+		stars: 1,
+		url: "https://github.com/NOPLAB/M5StackInvertedPendulumV2.2"
+	},
+	{
+		name: "robocup-rl",
+		description: "RoboCup用強化学習プロジェクト",
+		language: "Python",
+		stars: 1,
+		url: "https://github.com/NOPLAB/robocup-rl"
+	}
+];
 ---
 
 <!doctype html>
@@ -13,37 +61,474 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<!-- Hero Section -->
+			<section class="hero">
+				<div class="hero-content">
+					<div class="profile-section">
+						<Image src={nopImage} alt="nop" width="300" height="300" class="profile-image"/>
+						<div class="profile-info">
+							<h1 class="hero-title">Hi! I'm nop! 🍤</h1>
+							<p class="hero-subtitle">System Developer & Computer Science Enthusiast</p>
+							<p class="hero-description">
+								機械設計・加工、ロボット制御技術を身につけ、Rustを中心とした低レベルプログラミングとハードウェア開発に取り組んでいます。
+							</p>
+							<div class="social-links">
+								<a href="https://github.com/NOPLAB" target="_blank" class="social-link">GitHub</a>
+								<a href="https://x.com/nopp_dev" target="_blank" class="social-link">X</a>
+								<a href="/blog" target="_blank" class="social-link">Blog</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Stats Section -->
+			<section class="stats">
+				<div class="stat-item">
+					<span class="stat-number">60</span>
+					<span class="stat-label">Projects</span>
+				</div>
+				<div class="stat-item">
+					<span class="stat-number">35</span>
+					<span class="stat-label">Followers</span>
+				</div>
+				<div class="stat-item">
+					<span class="stat-number">2.6K</span>
+					<span class="stat-label">X Followers</span>
+				</div>
+			</section>
+
+			<!-- Featured Projects Section -->
+			<section class="projects">
+				<h2 class="section-title">Featured Projects</h2>
+				<div class="projects-grid">
+					{projects.map((project) => (
+						<div class="project-card">
+							<div class="project-header">
+								<h3 class="project-name">{project.name}</h3>
+								<div class="project-stats">
+									<span class="language-tag" data-language={project.language.toLowerCase()}>{project.language}</span>
+									<span class="stars">⭐ {project.stars}</span>
+								</div>
+							</div>
+							<p class="project-description">{project.description}</p>
+							<a href={project.url} target="_blank" class="project-link">View on GitHub →</a>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<!-- Skills Section -->
+			<section class="skills">
+				<h2 class="section-title">Tech Stack</h2>
+				<div class="skills-grid">
+					<div class="skill-category">
+						<h3>Languages</h3>
+						<div class="skill-tags">
+							<span class="skill-tag">Rust</span>
+							<span class="skill-tag">C</span>
+							<span class="skill-tag">C++</span>
+							<span class="skill-tag">Python</span>
+							<span class="skill-tag">TypeScript</span>
+							<span class="skill-tag">MATLAB</span>
+							<span class="skill-tag">Lua</span>
+							<span class="skill-tag">TeX</span>
+						</div>
+					</div>
+					<div class="skill-category">
+						<h3>Specialties</h3>
+						<div class="skill-tags">
+							<span class="skill-tag">Systems Programming</span>
+							<span class="skill-tag">Control Systems</span>
+							<span class="skill-tag">Robotics</span>
+							<span class="skill-tag">Emulators</span>
+							<span class="skill-tag">Ray Tracing</span>
+							<span class="skill-tag">OS Development</span>
+							<span class="skill-tag">Machine Design</span>
+							<span class="skill-tag">Hardware Development</span>
+						</div>
+					</div>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+<style>
+	/* Hero Section */
+	.hero {
+	padding: 8rem 2rem;
+	text-align: center;
+	background: linear-gradient(135deg, var(--bg) 0%, var(--gray-lightest) 100%);
+	min-height: 85vh;
+	display: flex;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+}
+
+	.hero::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: 
+		radial-gradient(circle at 20% 20%, rgba(23, 23, 23, 0.03) 0%, transparent 25%),
+		radial-gradient(circle at 80% 80%, rgba(23, 23, 23, 0.03) 0%, transparent 25%),
+		radial-gradient(circle at 40% 60%, rgba(23, 23, 23, 0.02) 0%, transparent 20%);
+	pointer-events: none;
+}
+
+	.hero-content {
+	max-width: 1200px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 85vh;
+	transform: translateY(-120px);
+}
+
+	.profile-section {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 3rem;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+	.profile-image {
+	border-radius: 50%;
+	box-shadow: 0 12px 40px var(--shadow-medium), 0 0 0 6px var(--card-bg);
+	transition: all 0.4s ease;
+	filter: grayscale(20%) contrast(1.1);
+}
+
+	.profile-image:hover {
+	transform: scale(1.05) rotate(2deg);
+	box-shadow: 0 20px 60px var(--shadow-heavy), 0 0 0 8px var(--gray-lightest);
+	filter: grayscale(0%) contrast(1.15);
+}
+
+	.profile-info {
+		text-align: left;
+		max-width: 700px;
+	}
+
+	.hero-title {
+	font-size: 5.5rem;
+	color: var(--text);
+	margin-bottom: 0.8rem;
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	text-shadow: 0 2px 12px rgba(23, 23, 23, 0.08);
+	line-height: 1.1;
+}
+
+	.hero-subtitle {
+	font-size: 1.4rem;
+	color: var(--sub-text);
+	margin-bottom: 1.2rem;
+	font-weight: 500;
+	opacity: 0.9;
+	letter-spacing: 0.01em;
+}
+
+	.hero-description {
+	font-size: 1.1rem;
+	color: var(--sub-text);
+	line-height: 1.7;
+	margin-bottom: 2.5rem;
+	opacity: 0.8;
+	font-weight: 400;
+}
+
+	.social-links {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.social-link {
+	padding: 0.8rem 2rem;
+	background: var(--text);
+	color: var(--bg);
+	text-decoration: none;
+	border-radius: 30px;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 12px var(--shadow-light);
+	border: 2px solid transparent;
+	letter-spacing: 0.5px;
+}
+
+	.social-link:hover {
+	background: var(--bg);
+	color: var(--text);
+	transform: translateY(-3px);
+	box-shadow: 0 8px 20px var(--shadow-medium);
+	border-color: var(--text);
+}
+
+	/* Stats Section */
+	.stats {
+	display: flex;
+	justify-content: center;
+	gap: 4rem;
+	padding: 4rem 2rem;
+	background: var(--card-bg);
+	margin: 3rem 0;
+	flex-wrap: wrap;
+	border-top: 1px solid var(--border-light);
+	border-bottom: 1px solid var(--border-light);
+}
+
+	.stat-item {
+		text-align: center;
+	}
+
+	.stat-number {
+	display: block;
+	font-size: 2.8rem;
+	font-weight: 700;
+	color: var(--text);
+	line-height: 1;
+	margin-bottom: 0.5rem;
+}
+
+	.stat-label {
+	font-size: 1rem;
+	color: var(--sub-text);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	opacity: 0.8;
+	font-weight: 500;
+}
+
+	/* Projects Section */
+	.projects {
+		padding: 4rem 2rem;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.section-title {
+	text-align: center;
+	font-size: 2.2rem;
+	color: var(--text);
+	margin-bottom: 3.5rem;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		gap: 2rem;
+	}
+
+	.project-card {
+	background: var(--card-bg);
+	border-radius: 16px;
+	padding: 2.5rem;
+	box-shadow: 0 4px 16px var(--shadow-light);
+	transition: all 0.3s ease;
+	border: 1px solid var(--border-light);
+	position: relative;
+}
+
+	.project-card:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 12px 32px var(--shadow-medium);
+	border-color: var(--gray-light);
+}
+
+	.project-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 1rem;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.project-name {
+	font-size: 1.4rem;
+	color: var(--text);
+	margin: 0;
+	word-break: break-word;
+	font-weight: 600;
+}
+
+	.project-stats {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex-shrink: 0;
+	}
+
+	.language-tag {
+		padding: 0.25rem 0.75rem;
+		border-radius: 20px;
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: white;
+	}
+
+	.language-tag[data-language="rust"] {
+		background: #ce422b;
+	}
+
+	.language-tag[data-language="python"] {
+		background: #3776ab;
+	}
+
+	.language-tag[data-language="c++"] {
+		background: #00599c;
+	}
+
+	.language-tag[data-language="c"] {
+		background: #555555;
+	}
+
+	.language-tag[data-language="lua"] {
+		background: #2c2d72;
+	}
+
+	.language-tag[data-language="shaderlab"] {
+		background: #8e44ad;
+	}
+
+	.stars {
+		font-size: 0.9rem;
+		color: var(--sub-text);
+	}
+
+	.project-description {
+	font-size: 1rem;
+	color: var(--sub-text);
+	line-height: 1.6;
+	margin-bottom: 1.8rem;
+	opacity: 0.9;
+}
+
+	.project-link {
+	display: inline-flex;
+	align-items: center;
+	color: var(--text);
+	text-decoration: none;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	border-bottom: 1px solid transparent;
+}
+
+	.project-link:hover {
+	color: var(--accent-light);
+	border-bottom-color: var(--accent-light);
+}
+
+	/* Skills Section */
+	.skills {
+	padding: 5rem 2rem;
+	background: var(--gray-lightest);
+	max-width: 1200px;
+	margin: 4rem auto;
+	border-radius: 24px;
+	border: 1px solid var(--border-light);
+}
+
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 3rem;
+	}
+
+	.skill-category h3 {
+	color: var(--text);
+	margin-bottom: 2rem;
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+
+	.skill-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.skill-tag {
+	padding: 0.8rem 1.5rem;
+	background: var(--card-bg);
+	color: var(--text);
+	border-radius: 30px;
+	font-weight: 500;
+	box-shadow: 0 2px 8px var(--shadow-light);
+	transition: all 0.3s ease;
+	border: 2px solid var(--border-light);
+}
+
+	.skill-tag:hover {
+	border-color: var(--text);
+	transform: translateY(-3px);
+	box-shadow: 0 6px 16px var(--shadow-medium);
+	background: var(--bg);
+}
+
+
+
+	/* Responsive Design */
+	@media (max-width: 768px) {
+		.hero {
+			padding: 2rem 1rem;
+		}
+
+		.profile-section {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.profile-info {
+			text-align: center;
+		}
+
+		.hero-title {
+			font-size: 4rem;
+		}
+
+		.stats {
+			gap: 2rem;
+		}
+
+		.projects-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.project-header {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.skills-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.hero-title {
+			font-size: 3rem;
+		}
+
+		.social-links {
+			justify-content: center;
+		}
+
+		.project-card {
+			padding: 1.5rem;
+		}
+	}
+</style>
