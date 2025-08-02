@@ -21,12 +21,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create .env file
-        run: |
-          echo "CONTENTFUL_SPACE=${{ secrets.CONTENTFUL_SPACE }}" >> .env \
-          echo "CONTENTFUL_ACCESSTOKEN=${{ secrets.CONTENTFUL_ACCESSTOKEN }}" >> .env \
-          echo "CONTENTFUL_ENVIROMENT=${{ secrets.CONTENTFUL_ENVIROMENT }}" >> .env
-      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -42,7 +36,11 @@ jobs:
       
       - name: Build
         run: pnpm run build
-      
+        env:
+          CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
+          CONTENTFUL_ACCESSTOKEN: {{ secrets.CONTENTFUL_ACCESSTOKEN }}
+          CONTENTFUL_ENVIROMENT: {{ secrets.CONTENTFUL_ENVIROMENT }}
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
       
