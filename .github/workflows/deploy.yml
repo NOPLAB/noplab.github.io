@@ -23,9 +23,9 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "CONTENTFUL_SPACE=${{ secrets.CONTENTFUL_SPACE }}" > .env \
-          echo "CONTENTFUL_ACCESSTOKEN=${{ secrets.CONTENTFUL_ACCESSTOKEN }}" > .env \
-          echo "CONTENTFUL_ENVIROMENT=${{ secrets.CONTENTFUL_ENVIROMENT }}" > .env
+          echo "CONTENTFUL_SPACE=${{ secrets.CONTENTFUL_SPACE }}" >> .env \
+          echo "CONTENTFUL_ACCESSTOKEN=${{ secrets.CONTENTFUL_ACCESSTOKEN }}" >> .env \
+          echo "CONTENTFUL_ENVIROMENT=${{ secrets.CONTENTFUL_ENVIROMENT }}" >> .env
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
