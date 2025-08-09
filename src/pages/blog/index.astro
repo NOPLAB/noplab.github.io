@@ -221,7 +221,8 @@ const posts = items.sort(
 									<div class="post-content">
 										<h3 class="post-title">{post.fields.title}</h3>
 										<p class="post-date">
-											<FormattedDate date={new Date(post.sys.updatedAt)} />
+										    作成日: 
+											<FormattedDate date={new Date(post.sys.createdAt)} />
 										</p>
 									</div>
 								</a>
