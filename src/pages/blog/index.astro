@@ -3,6 +3,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import SearchBar from '../../components/SearchBar.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import * as contentful from 'contentful';
 
@@ -43,28 +44,6 @@ const posts = items.sort(
 				font-weight: 600;
 			}
 
-			.search-container {
-				max-width: 600px;
-				margin: 0 auto 3rem;
-				position: relative;
-			}
-
-			.search-input {
-				width: 100%;
-				padding: 1rem 1.5rem;
-				border: 2px solid var(--border-light);
-				border-radius: 50px;
-				background: var(--card-bg);
-				font-size: 1rem;
-				color: var(--text);
-				transition: all 0.3s ease;
-			}
-
-			.search-input:focus {
-				outline: none;
-				border-color: var(--accent);
-				box-shadow: 0 0 0 3px rgba(23, 23, 23, 0.1);
-			}
 
 			.posts-container {
 				max-width: 800px;
@@ -101,9 +80,6 @@ const posts = items.sort(
 				}
 
 
-				.search-input {
-					padding: 0.8rem 1.2rem;
-				}
 			}
 		</style>
 	</head>
@@ -112,14 +88,7 @@ const posts = items.sort(
 		<main>
 			<div class="blog-header">
 				<h1 class="blog-title">Blog</h1>
-				<div class="search-container">
-					<input 
-						type="text" 
-						class="search-input" 
-						placeholder="記事を検索..." 
-						id="searchInput"
-					/>
-				</div>
+				<SearchBar />
 			</div>
 
 			<div class="posts-container">
@@ -140,77 +109,5 @@ const posts = items.sort(
 			</div>
 		</main>
 		<Footer />
-		<script>
-			// 検索機能の実装
-			const searchInput = document.getElementById('searchInput') as HTMLInputElement;
-			const postsList = document.getElementById('postsList') as HTMLElement;
-			const posts = Array.from(postsList?.querySelectorAll('.post-item') || []) as HTMLElement[];
-
-			// 検索処理
-			function filterPosts(searchTerm: string) {
-				const filtered = posts.filter(post => {
-					const titleElement = post.querySelector('.blog-card-title');
-					const title = titleElement?.textContent?.toLowerCase() || '';
-					return title.includes(searchTerm.toLowerCase());
-				});
-
-				// すべての投稿を非表示
-				posts.forEach(post => {
-					(post as HTMLElement).style.display = 'none';
-				});
-
-				// フィルターされた投稿のみ表示
-				filtered.forEach(post => {
-					(post as HTMLElement).style.display = 'block';
-				});
-
-				// 結果がない場合のメッセージ表示
-				const noResultsMessage = document.querySelector('.no-results') as HTMLElement;
-				if (filtered.length === 0 && searchTerm) {
-					if (!noResultsMessage) {
-						const message = document.createElement('div');
-						message.className = 'no-results';
-						message.style.cssText = 'text-align: center; padding: 3rem; color: var(--sub-text); font-size: 1.1rem;';
-						message.textContent = '検索条件に一致する記事が見つかりませんでした。';
-						postsList?.parentNode?.appendChild(message);
-					} else {
-						noResultsMessage.style.display = 'block';
-					}
-				} else if (noResultsMessage) {
-					noResultsMessage.style.display = 'none';
-				}
-			}
-
-			// 検索入力イベント
-			searchInput?.addEventListener('input', (e) => {
-				const target = e.target as HTMLInputElement;
-				const searchTerm = target.value.trim();
-				
-				if (searchTerm === '') {
-					// 空の場合はすべて表示
-					posts.forEach(post => {
-						(post as HTMLElement).style.display = 'block';
-					});
-					const noResultsMessage = document.querySelector('.no-results') as HTMLElement;
-					if (noResultsMessage) {
-						noResultsMessage.style.display = 'none';
-					}
-				} else {
-					filterPosts(searchTerm);
-				}
-			});
-
-			// Enter キーでの検索
-			searchInput?.addEventListener('keypress', (e) => {
-				if (e.key === 'Enter') {
-					e.preventDefault();
-					const target = e.target as HTMLInputElement;
-					const searchTerm = target.value.trim();
-					if (searchTerm) {
-						filterPosts(searchTerm);
-					}
-				}
-			});
-		</script>
 	</body>
 </html>
