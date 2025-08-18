@@ -1,7 +1,7 @@
 ---
 import BlogPost from '../../layouts/BlogPost.astro';
 import * as contentful from 'contentful';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { marked } from 'marked';
 
 export async function getStaticPaths() {
     const client = contentful.createClient({
@@ -20,8 +20,8 @@ export async function getStaticPaths() {
 }
 
 const post = Astro.props;
-console.log(post.fields.content);
-const contentHtml = documentToHtmlString(post.fields.content as any);
+const markdownContent = post.fields.markdown || post.fields.content || '';
+const contentHtml = markdownContent ? marked(markdownContent as string) : '';
 ---
 
 <BlogPost title={post.fields.title as string} description={(post.fields.description as string) || ''} pubDate={new Date(post.sys.createdAt)} updatedDate={new Date(post.sys.updatedAt)} heroImage={(post.fields.heroImage as any)?.fields?.file?.url}>
