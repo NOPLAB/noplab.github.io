@@ -1,0 +1,15 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+overrides:
+  rollup: ^4.59.0
+  picomatch@<2.3.2: ^2.3.2
+  picomatch@>=4.0.0 <4.0.4: ^4.0.4
+  fast-uri: ^3.1.2
+  ajv: ^8.18.0
+  mdast-util-to-hast: ^13.2.1
+  yaml: ^2.8.3
+  postcss: ^8.5.10
